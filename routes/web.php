@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('guest.welcome');
+// });
+
+Auth::routes();
+
+
+route::middleware('auth')->group(function(){
+   Route::get('/admin', 'Admin\HomeController@index')->middleware('auth')->name('admin.home'); 
+   Route::resource('posts', 'PostController');
 });
+
+Route::get('{any?}', function(){
+    return view('guest.welcome');
+} )->where("any",".*");
