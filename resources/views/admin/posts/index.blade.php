@@ -2,17 +2,30 @@
 
 @section('content')
 
-        @forelse ($posts as $post)
-           <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-title">{{ $posts->name }}</p>
-                    <p class="card-text">{{ $posts->email }}</p>
-                </div>
-        </div> 
-        @empty
-            <p>non ci sono elementi</p>
-        @endforelse
+<div class="container">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">title</th>
+                <th scope="col">content</th>
+                <th scope="col">image</th>
+                <th scope="col">slug</th>
+                <th scope="col">operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($posts as $post)
+            <tr>
+                <th>{{ $post->title }}</th>
+                <td>{{ $post->content }}</td>
+                <td>{{ $post->image }}</td>
+                <td>{{ $post->slug }}</td>
+            </tr>
+            @empty
 
-    
+            @endforelse
+
+        </tbody>
+    </table>
+</div>
 @endsection

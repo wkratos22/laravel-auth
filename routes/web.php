@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-route::middleware('auth')->group(function(){
-   Route::get('/admin', 'Admin\HomeController@index')->middleware('auth')->name('admin.home'); 
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->group(function(){
+   Route::get('/', 'HomeController@index')->middleware('auth')->name('admin.home'); 
    Route::resource('posts', 'PostController');
 });
 
